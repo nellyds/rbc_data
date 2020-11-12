@@ -1,6 +1,6 @@
 import React, { createContext } from 'react'
 import { readRemoteFile } from 'react-papaparse';
-import moment from 'moment';
+import moment, { months } from 'moment';
 import { races } from "../Util/Constants"
 export const DataContext = React.createContext();
 
@@ -21,10 +21,11 @@ export default class DataContextProvider extends React.Component {
                 result = result.data.splice(1, result.data.length)
                 await this.parseData(result)
                 await this.getMonthRange(result)
-                this.getYearRange(result)
-                 this.getCleanMonthlyData(this.state.parsedData, this.state.monthRange)
-                 this.getDataByRace(this.state.parsedData)
-                await this.setState({ shootingDataReady: true })
+                await this.getYearRange(result)
+                 await this.getCleanMonthlyData(this.state.parsedData, this.state.monthRange)
+                  this.getDataByRace(this.state.parsedData)
+                  this.groupDataByYear(this.state.monthlyData, this.state.yearRange)
+                  await this.setState({ shootingDataReady: true })
             }
         })
     }
@@ -73,7 +74,9 @@ export default class DataContextProvider extends React.Component {
                 race: {
                     w: monthsData.filter((d) => d.race === "W").length,
                     b: monthsData.filter((d) => d.race === "B").length,
-                    h: monthsData.filter((d) => d.race === "H").length
+                    h: monthsData.filter((d) => d.race === "H").length,
+                    a: monthsData.filter((d) => d.race === "A").length,
+                    o: monthsData.filter((d) => d.race === "O").length
                 }
             }
         })
@@ -95,6 +98,20 @@ export default class DataContextProvider extends React.Component {
         }
         this.setState({ raceData: [...result] })
     }
+
+
+
+    groupDataByYear = async (data, yearRange) =>{
+        const result = []
+        for(let i=0; i < yearRange.length; i++){
+        const curr = yearRange[i]
+        console.log(typeof curr)
+        console.log(typeof data[2].year)
+            let obj = {curr: data.filter((d) =>parseInt(d.year) === curr)}
+            console.log(obj)            
+        }
+        }
+    
 
     render() {
         return (

@@ -11,6 +11,15 @@ font-family: 'Roboto Mono';
 margin: 10px;
 font-size: 1.2em;
 text-align: center;
+color: black;
+`
+
+export const ListPoint = styled.div`
+font-family: 'Roboto Mono';
+margin: 3px;
+font-size: 1.2em;
+text-align: center;
+color: black;
 `
 
 export const SelectForm = styled.div`
