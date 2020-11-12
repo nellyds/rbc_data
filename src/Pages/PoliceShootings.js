@@ -1,17 +1,17 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import { DataContext } from "../Contexts/DataContext"
 import { PageHeader } from "../Styles/StyledComponents"
+import ShootingsCharts from "../Components/ShootingsCharts"
 function PoliceShootings() {
-    const { dataReady, monthlyData} = useContext(DataContext)
+    const { shootingDataReady, monthlyData, yearRange, raceData } = useContext(DataContext)
     const [data, setData] = useState([])
     return (
         <div>
             <PageHeader >Police Shootings</PageHeader>
-            {dataReady && monthlyData.length > 0 ?
-            monthlyData.map((item) =>
-            <p key={item.date}> {item.total} </p>)
-            :
-<p>Data not ready</p>
+            {shootingDataReady && monthlyData.length > 0 ?
+                <ShootingsCharts data={monthlyData} years={yearRange} />
+                :
+                <p>Data not ready</p>
             }
         </div>
     )
