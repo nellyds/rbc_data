@@ -50,7 +50,7 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Visualizations', 'About', 'Contact'].map((text, index) => (
+        {['Visualizations', 'About'].map((text, index) => (
           <ListItem id={text} button key={text}>
             <ListPoint id={text} onClick={goTo} >{text}</ListPoint>
           </ListItem>

@@ -12,7 +12,6 @@ const goTo = (event) =>{
   } 
     return(
         <div>
-            <p>sdf</p>
             <p onClick={goTo} id="covid">Covid</p>
             <p onClick={goTo} id="police">Police Shootings</p>
         </div>

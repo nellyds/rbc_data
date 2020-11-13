@@ -12,19 +12,20 @@ export default class DataContextProvider extends React.Component {
         monthlyData: [],
         shootingDataReady: false,
         raceData: null,
-        yearRange: []
+        yearRange: [],
+        mostRecent: ''
     }
 
     componentDidMount() {
         readRemoteFile('https://raw.githubusercontent.com/washingtonpost/data-police-shootings/master/fatal-police-shootings-data.csv', {
             complete: async (result) => {
                 result = result.data.splice(1, result.data.length)
+                this.getMostRecent(result)
                 await this.parseData(result)
-                await this.getMonthRange(result)
-                await this.getYearRange(result)
-                  await this.getCleanMonthlyData(this.state.parsedData, this.state.monthRange)
-                  await this.getDataByRace(this.state.parsedData)
-                  await this.setState({ shootingDataReady: true })
+                this.getTimeRange(result)
+                this.getCleanMonthlyData(this.state.parsedData, this.state.monthRange)
+                this.getDataByRace(this.state.parsedData)
+                await this.setState({ shootingDataReady: true })
             }
         })
     }
@@ -44,21 +45,23 @@ export default class DataContextProvider extends React.Component {
             }
         })
         this.setState({ parsedData: parsed })
+        console.log(parsed[parsed.length - 1].date)
         await console.log('gotData')
     }
 
-    getMonthRange = async (result) => {
-        let set = new Set();
-        result.map((item) =>
-            set.add(moment(item[2]).month() + "/" + moment(item[2]).year()))
-        this.setState({ monthRange: [...set] })
-        console.log('gotMonths')
+    getMostRecent = async (result) => {
+        this.setState({ mostRecent: result[result.length - 2][2] })
     }
 
-    getYearRange = async (result) =>{
-        let set = new Set();
-        result.map((item) => set.add(moment(item[2]).year()))
-        this.setState({yearRange: [...set]})
+    getTimeRange = async (result) => {
+        let monthSet = new Set();
+        let yearSet = new Set();
+        result.map((item => {
+            monthSet.add(moment(item[2]).month() + "/" + moment(item[2]).year())
+            yearSet.add(moment(item[2]).year())
+        }))
+        this.setState({ yearRange: [...yearSet] })
+        this.setState({ monthRange: [...monthSet] })
     }
 
     getCleanMonthlyData = async (data, monthRange) => {
@@ -66,7 +69,7 @@ export default class DataContextProvider extends React.Component {
             let monthsData = data.filter((d) => d.date === item)
             return {
                 date: item,
-                year: item.substring(item.length-4),
+                year: item.substring(item.length - 4),
                 total: monthsData.length,
                 signs_of_mental_illness: monthsData.filter((d) => d.signs_of_mental_illness !== "unarmed").length,
                 armed: monthsData.filter((d) => d.armed === "True").length,
