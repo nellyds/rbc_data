@@ -50,7 +50,7 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Visualizations', 'About', 'Send email', 'Drafts'].map((text, index) => (
+        {['Visualizations', 'About', 'Contact'].map((text, index) => (
           <ListItem id={text} button key={text}>
             <ListPoint id={text} onClick={goTo} >{text}</ListPoint>
           </ListItem>
@@ -62,9 +62,9 @@ export default function TemporaryDrawer() {
 
   return (
     <div>
-      {['Menu'].map((anchor) => (
+      {['Bottom'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+          <Button onClick={toggleDrawer(anchor, true)}>Menu</Button>
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
           </Drawer>

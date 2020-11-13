@@ -11,7 +11,7 @@ export default class DataContextProvider extends React.Component {
         dataReady: false,
         monthlyData: [],
         shootingDataReady: false,
-        raceData: [],
+        raceData: null,
         yearRange: []
     }
 
@@ -22,9 +22,8 @@ export default class DataContextProvider extends React.Component {
                 await this.parseData(result)
                 await this.getMonthRange(result)
                 await this.getYearRange(result)
-                 await this.getCleanMonthlyData(this.state.parsedData, this.state.monthRange)
-                  this.getDataByRace(this.state.parsedData)
-                  this.groupDataByYear(this.state.monthlyData, this.state.yearRange)
+                  await this.getCleanMonthlyData(this.state.parsedData, this.state.monthRange)
+                  await this.getDataByRace(this.state.parsedData)
                   await this.setState({ shootingDataReady: true })
             }
         })
@@ -96,22 +95,10 @@ export default class DataContextProvider extends React.Component {
             }
             result[races[i]] = obj
         }
-        this.setState({ raceData: [...result] })
+        this.setState({ raceData: result })
+        await console.log('race data calculated')
     }
 
-
-
-    groupDataByYear = async (data, yearRange) =>{
-        const result = []
-        for(let i=0; i < yearRange.length; i++){
-        const curr = yearRange[i]
-        console.log(typeof curr)
-        console.log(typeof data[2].year)
-            let obj = {curr: data.filter((d) =>parseInt(d.year) === curr)}
-            console.log(obj)            
-        }
-        }
-    
 
     render() {
         return (
