@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { DataContext } from "../Contexts/DataContext"
 import { PageHeader } from "../Styles/StyledComponents"
-import ShootingsCharts from "../Components/ShootingsCharts"
+import ShootingsCharts from "../Components/Police/ShootingsCharts"
 import FieldSelect from "../Components/Forms/FieldSelect"
 function PoliceShootings() {
     const { shootingDataReady, monthlyData, yearRange, raceData } = useContext(DataContext)

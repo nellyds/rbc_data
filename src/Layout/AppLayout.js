@@ -9,6 +9,7 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import { useHistory } from "react-router-dom";
 import { DataPoint, ListPoint} from "../Styles/StyledComponents"
 import AppContent from "./AppContent"
 const useStyles = makeStyles({
@@ -33,6 +34,11 @@ export default function TemporaryDrawer() {
 
     setState({ ...state, [anchor]: open });
   };
+  const history = useHistory();
+  const goTo = (event) =>{
+    console.log(event.target.id)
+    history.push('/' +event.target.id)
+  } 
 
   const list = (anchor) => (
     <div
@@ -44,9 +50,9 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListPoint >{text}</ListPoint>
+        {['Visualizations', 'About', 'Send email', 'Drafts'].map((text, index) => (
+          <ListItem id={text} button key={text}>
+            <ListPoint id={text} onClick={goTo} >{text}</ListPoint>
           </ListItem>
         ))}
       </List>
@@ -56,7 +62,7 @@ export default function TemporaryDrawer() {
 
   return (
     <div>
-      {['bottom'].map((anchor) => (
+      {['Menu'].map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>

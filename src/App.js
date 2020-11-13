@@ -1,6 +1,7 @@
 import React from 'react';
 import './Styles/app.css';
 import DataContext from "./Contexts/DataContext"
+import CovidContext from "./Contexts/CovidContext"
 import PoliceShootings from "./Pages/PoliceShootings"
 import USCovid from "./Pages/USCovid"
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
@@ -12,7 +13,9 @@ export default function App() {
 
   return (
     <DataContext>
+      <CovidContext>
     <AppLayout />
+    </CovidContext>
     </DataContext>
   );
 }
