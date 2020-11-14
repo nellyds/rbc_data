@@ -4,7 +4,7 @@ import { StatGrid, CenterDiv } from "../Styles/StyledComponents"
 import { getAverage, getField } from "../Util/DataParseMethods"
 import FieldSelect from "../Components/Forms/FieldSelect"
 import Button from '@material-ui/core/Button';
-import InputLabel from '@material-ui/core/InputLabel';
+import { PageHeader } from "../Styles/StyledComponents"
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Select from '@material-ui/core/Select';
@@ -24,24 +24,24 @@ const buildChart = async () => {
             setDataSet(result[dailyField].reverse())
         } else {
             let result = await getField(pastMonth, dailyField)
-            console.log(result)
             setDataSet(result[dailyField].reverse())
         }
     }
 }
 return (
     <div>
+                    <PageHeader >US Covid data</PageHeader>
         {current != null && pastWeek != null
             ?
             <CenterDiv>
                 <FormControl>
-                    <InputLabel>Data Range</InputLabel>
                     <Select 
                         value={dataRange}
                         onChange={(event) => {
                             setDataRange(event.target.value)
                         }}
                     >
+                        <FormHelperText>Choose a field of data</FormHelperText>
                         {range.map(value => (
                             <option key={value} value={value}>
                                 {value}
@@ -53,7 +53,10 @@ return (
                 <FieldSelect fields={covidFields} dailyField={dailyField} setField={setDailyField} />
                 {dataSet.length > 0 ?
                     <TrendChart data={dataSet} /> :
+                    <div>
                     <p>Select a data set!</p>
+                    <p>Select a time frame!</p>
+                    </div>
                 }
 
                 <Button onClick={buildChart} variant="outlined" color="primary">

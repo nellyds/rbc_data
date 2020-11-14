@@ -8,3 +8,8 @@ body{
 #root{
     font-family: 'Roboto Mono', monospace;
 }
+
+.menu{
+    background-color: black;
+    color: white;
+}

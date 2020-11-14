@@ -12,6 +12,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { useHistory } from "react-router-dom";
 import { DataPoint, ListPoint} from "../Styles/StyledComponents"
 import AppContent from "./AppContent"
+import img from "../Assets/icon.png"
 const useStyles = makeStyles({
   list: {
     width: 250,
@@ -36,12 +37,11 @@ export default function TemporaryDrawer() {
   };
   const history = useHistory();
   const goTo = (event) =>{
-    console.log(event.target.id)
     history.push('/' +event.target.id)
   } 
 
   const list = (anchor) => (
-    <div
+    <div 
       className={clsx(classes.list, {
         [classes.fullList]: anchor === 'top' || anchor === 'bottom',
       })}
@@ -49,7 +49,7 @@ export default function TemporaryDrawer() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
+      <List >
         {['Visualizations', 'About'].map((text, index) => (
           <ListItem id={text} button key={text}>
             <ListPoint id={text} onClick={goTo} >{text}</ListPoint>
@@ -64,7 +64,7 @@ export default function TemporaryDrawer() {
     <div>
       {['Bottom'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>Menu</Button>
+          <img onClick={toggleDrawer(anchor, true)} src={img} />
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
           </Drawer>

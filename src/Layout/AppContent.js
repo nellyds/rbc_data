@@ -15,6 +15,7 @@ function AppContent(){
       <Route path="/about" component={About} />
       <Route path="/police" component={PoliceShootings} />
       <Route path="/gameSales" component ={GameSales} />
+      <Route path="/" component={Projects} exact />
   </Switch>
   </CenterDiv>
     )

@@ -9,7 +9,10 @@ state = {
     dataKeys:[],
     publishers: [],
     topPublishers: [],
-    dataReady: false
+    dataReady: false,
+    topTwenty: [],
+    genres: [],
+    platforms: []
 }
 
 
@@ -17,21 +20,32 @@ componentDidMount() {
     readRemoteFile('https://raw.githubusercontent.com/nellyds/dataSets/master/vgsales.csv', {
         complete: async (result) => {
             this.setState({dataKeys: result.data[0]})
-            console.log(this.state.dataKeys)
             result = result.data.splice(1, result.data.length)
             this.getAllPublishers(result);
-            this.getPublisherTotal(result)
+            this.getPublisherTotal(result);
+            this.getTopTwenty(result)
             await this.setState({dataReady: true})
         }
     })
 }
 
+
+getAllGenres = (result) =>{
+
+}
 getAllPublishers = (result) =>{
+    let platformSet = new Set()
+    let genreSet = new Set()
     let publisherSet = new Set();
     result.map((d) =>{
         publisherSet.add(d[5])
+        platformSet.add(d[2])
+        genreSet.add(d[4])
     })
     this.setState({publishers: [...publisherSet]})
+    this.setState({genres: [...genreSet]})
+    this.setState({platforms: [...platformSet]})
+
 }
 
 getPublisherTotal = (result) =>{
@@ -50,6 +64,21 @@ getPublisherTotal = (result) =>{
         data.push(pubData)
     })
     this.setState({topPublishers: [...data]})
+}
+
+getTopTwenty = (result) =>{
+    result = result.slice(0,20)
+    let clean = result.map((d)=>{
+        return{
+            title: d[1],
+            globalTotal: d[10],
+            platform: d[2],
+            na: d[6],
+            eu: d[7],
+            jp: d[8]
+        }
+    })
+    this.setState({topTwenty: clean})
 }
 
 render() {

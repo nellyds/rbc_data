@@ -45,7 +45,6 @@ export default class DataContextProvider extends React.Component {
             }
         })
         this.setState({ parsedData: parsed })
-        console.log(parsed[parsed.length - 1].date)
         await console.log('gotData')
     }
 

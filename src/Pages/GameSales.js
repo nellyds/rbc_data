@@ -1,36 +1,51 @@
-import React, {useContext, useState} from 'react'
-import {GameDataContext} from "../Contexts/GameContext"
+import React, { useContext, useState } from 'react'
+import { GameDataContext } from "../Contexts/GameContext"
 import PublisherTreeMap from "../Components/GameSales/PublisherTreeMap"
 import FieldSelect from "../Components/Forms/FieldSelect"
-function GameSales(){
+import TitlesChart from "../Components/GameSales/TitlesChart"
+import ChartBuilder from "../Components/GameSales/ChartBuilder"
+import { PageHeader } from "../Styles/StyledComponents"
+function GameSales() {
 
-    const {topPublishers, dataReady} = useContext(GameDataContext)
+    const { topPublishers, dataReady, topTwenty } = useContext(GameDataContext)
     const [publishers, setPublishers] = useState([])
     const [range, setRange] = useState(1)
     const [salesRange, setSalesRange] = useState(1)
-    const buildChart= async () =>{
+    const [showSales, toggleSales] = useState(false)
+    const buildChart = async () => {
 
-        await setPublishers(topPublishers.slice(0,range))
+        await setPublishers(topPublishers.slice(0, range))
     }
-    console.log(topPublishers)
-    console.log(dataReady)
-    return(
+
+    const toggleChart = () => {
+        toggleSales(!showSales)
+    }
+
+    return (
         <div>
+<PageHeader >Top Game publishers</PageHeader>
 
 
-    
             { dataReady && topPublishers.length > 40 ?
-            <div>
-                            <p  onClick={buildChart}>Build Chart</p>
-    <p>{range}</p>
-                <FieldSelect fields={[5,20,50,100]} setField={setRange}/>
-            <PublisherTreeMap data={publishers} />
-            <FieldSelect fields={[1,2,3,4,5]}  setField={setSalesRange}/>
-            </div>
-            : <div>
-                <p>Data not ready</p>
+                <div>
+                    <p onClick={buildChart}>Build Chart</p>
+                    {!showSales ?
+                        <p onClick={toggleChart}>Out of the top 1000 selling games of all time, one publisher appears just a bit more than its peers.
+                                                        But how many units of software does that amount to? </p>
+                        :
+                        <p onClick={toggleChart}> Total Units sold by publisher</p>
+                    }
+
+                    <p>{range}</p>
+                    <FieldSelect fields={[5, 20, 50, 100]} setField={setRange} />
+                    <PublisherTreeMap toggle={showSales} data={publishers} />
+                    <TitlesChart data={topTwenty} />
+                    {/* <ChartBuilder /> */}
                 </div>
-}
+                : <div>
+                    <p>Data not ready</p>
+                </div>
+            }
         </div>
     )
 }

@@ -3,11 +3,10 @@ import { Route} from 'react-router-dom';
 import PoliceShootings from "./PoliceShootings"
 import USCovid from "./USCovid"
 import { useHistory } from "react-router-dom";
-
+import { PageHeader } from "../Styles/StyledComponents"
 function Projects(){
     const history = useHistory();
 const goTo = (event) =>{
-    console.log(event.target.id)
     history.push('/' +event.target.id)
   } 
   const pages = [{
@@ -17,6 +16,7 @@ const goTo = (event) =>{
 { id: 'gameSales', name: 'Game Sales'}]
     return(
         <div>
+            <PageHeader>Data Visualizations</PageHeader>
             {pages.map((d)=>
                 <p key={d.id} id={d.id} onClick={goTo}> {d.name} </p>
             )
