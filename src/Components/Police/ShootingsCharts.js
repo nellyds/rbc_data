@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ScrollAnimation from 'react-animate-on-scroll';
 import "animate.css/animate.min.css";
+import { colors } from "../../Util/Constants"
 import { DataPoint, ChartHolder } from "../../Styles/StyledComponents"
 import { XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, Hint, Crosshair, VerticalBarSeries, DiscreteColorLegend } from 'react-vis';
 const TrendChart = (props) => {
@@ -81,23 +82,23 @@ const TrendChart = (props) => {
                         items={[
                             {
                                 title: 'White',
-                                color: 'Blue'
+                                color: colors['W']
                             },
                             {
                                 title: 'Hispanics',
-                                color: 'Orange'
+                                color: colors['H']
                             },
                             {
                                 title: 'Black',
-                                color: 'Red'
+                                color: colors['B']
                             },
                             {
                                 title: 'Asian',
-                                color: 'Purple'
+                                color: colors['A']
                             },
                             {
                                 title: 'Other',
-                                color: 'Violet'
+                                color: colors['O']
                             },
                             {
                                 title: 'Total',
@@ -124,31 +125,32 @@ const TrendChart = (props) => {
                         cluster="a"
                         animation
                         data={wArr}
-                        color="blue"
+                        color={colors['W']}
                         opacity='.6'
                     />
-                    <VerticalBarSeries id={props.name}
-                        onValueClick={(value) => setDataPoint(value)}
-                        animation
-                        cluster="a"
-                        data={bArr}
-                        color="red"
-                        opacity="1"
-                    />
-                    <VerticalBarSeries id={props.name}
+                                        <VerticalBarSeries id={props.name}
                         onValueClick={(value) => setDataPoint(value)}
                         animation
                         cluster="a"
                         data={hArr}
-                        color="orange"
+                        color= {colors['H']}
                         opacity='1'
                     />
                     <VerticalBarSeries id={props.name}
                         onValueClick={(value) => setDataPoint(value)}
                         animation
                         cluster="a"
+                        data={bArr}
+                        color={colors['B']}
+                        opacity="1"
+                    />
+
+                    <VerticalBarSeries id={props.name}
+                        onValueClick={(value) => setDataPoint(value)}
+                        animation
+                        cluster="a"
                         data={aArr}
-                        color="purple"
+                        color={colors['A']}
                         opacity='1'
                     />
                     <VerticalBarSeries id={props.name}
@@ -157,7 +159,7 @@ const TrendChart = (props) => {
                         animation
                         cluster="a"
                         data={oArr}
-                        color="violet"
+                        color={colors['O']}
                         opacity='1'
                     />
             <Crosshair values= {crossHairValue} />

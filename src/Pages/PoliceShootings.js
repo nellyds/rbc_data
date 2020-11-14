@@ -15,7 +15,7 @@ function PoliceShootings() {
     return (
         <div>
             <PageHeader >Police Shootings</PageHeader>
-            <FieldSelect fields={yearRange}  dailyField={year} setDailyField={setYear} />
+            <FieldSelect fields={yearRange}  dailyField={year} setField={setYear} />
             <p>{year}</p>
             {shootingDataReady && monthlyData.length > 0 ?
 <div>

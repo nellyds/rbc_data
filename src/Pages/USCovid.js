@@ -50,7 +50,7 @@ return (
                     </Select>
                     <FormHelperText>Choose a time range for data</FormHelperText>
                 </FormControl>
-                <FieldSelect fields={covidFields} dailyField={dailyField} setDailyField={setDailyField} />
+                <FieldSelect fields={covidFields} dailyField={dailyField} setField={setDailyField} />
                 {dataSet.length > 0 ?
                     <TrendChart data={dataSet} /> :
                     <p>Select a data set!</p>

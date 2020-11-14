@@ -16,7 +16,7 @@ function FieldSelect(props) {
     const classes = useStyles();
     const [dataField, setDataField] = useState('')
     const onSubmit = (event) =>{
-        props.setDailyField(event.target.value)
+        props.setField(event.target.value)
     }
     return (
         <div>

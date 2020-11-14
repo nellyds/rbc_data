@@ -8,7 +8,8 @@ state = {
     parsedData: [],
     dataKeys:[],
     publishers: [],
-    topPublishers: []
+    topPublishers: [],
+    dataReady: false
 }
 
 
@@ -20,6 +21,7 @@ componentDidMount() {
             result = result.data.splice(1, result.data.length)
             this.getAllPublishers(result);
             this.getPublisherTotal(result)
+            await this.setState({dataReady: true})
         }
     })
 }
@@ -32,66 +34,6 @@ getAllPublishers = (result) =>{
     this.setState({publishers: [...publisherSet]})
 }
 
-
-[
-    {
-      data: [
-        {
-          x: 'New Delhi',
-          y: 218
-        },
-        {
-          x: 'Kolkata',
-          y: 149
-        },
-        {
-          x: 'Mumbai',
-          y: 184
-        },
-        {
-          x: 'Ahmedabad',
-          y: 55
-        },
-        {
-          x: 'Bangaluru',
-          y: 84
-        },
-        {
-          x: 'Pune',
-          y: 31
-        },
-        {
-          x: 'Chennai',
-          y: 70
-        },
-        {
-          x: 'Jaipur',
-          y: 30
-        },
-        {
-          x: 'Surat',
-          y: 44
-        },
-        {
-          x: 'Hyderabad',
-          y: 68
-        },
-        {
-          x: 'Lucknow',
-          y: 28
-        },
-        {
-          x: 'Indore',
-          y: 19
-        },
-        {
-          x: 'Kanpur',
-          y: 29
-        }
-      ]
-    }
-  ]
-
 getPublisherTotal = (result) =>{
     let publist = this.state.publishers;
     let data = []
@@ -99,10 +41,17 @@ getPublisherTotal = (result) =>{
         let total = {}
         let obj = result.filter((f) => f[5] === d)
         total[d] = obj.length
-        data.push(total)
+        let salesTotal = 0;
+        for (let i=0; i< obj.length; i++){
+            salesTotal += parseInt(obj[i][10])
+        }
+        let pubData = {}
+        pubData[d] = {title: obj.length, unitTotal: salesTotal}
+        data.push(pubData)
     })
     this.setState({topPublishers: [...data]})
 }
+
 render() {
     return (
         <GameDataContext.Provider value={{ ...this.state }}>

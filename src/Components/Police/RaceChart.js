@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { DataPoint, ChartHolder } from "../../Styles/StyledComponents"
 import { XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, VerticalBarSeries, DiscreteColorLegend, LineMarkSeries } from 'react-vis';
-import { races } from "../../Util/Constants"
+import { races, colors } from "../../Util/Constants"
 function RaceChart(props) {
     const [dataPoint, setDataPoint] = useState({ date: '', value: '' })
     const [scrWidth, setScrWidth] = useState(500)
@@ -48,23 +48,23 @@ function RaceChart(props) {
                         items={[
                             {
                                 title: 'White',
-                                color: 'Blue'
+                                color: colors['W']
                             },
                             {
                                 title: 'Hispanics',
-                                color: 'Orange'
+                                color: colors['H']
                             },
                             {
                                 title: 'Black',
-                                color: 'Red'
+                                color: colors['B']
                             },
                             {
                                 title: 'Asian',
-                                color: 'Purple'
+                                color: colors['A']
                             },
                             {
                                 title: 'Other',
-                                color: 'Violet'
+                                color: colors['O']
                             },
                         ]}
                     />
@@ -73,43 +73,46 @@ function RaceChart(props) {
                     <XAxis />
                     <YAxis />
                     <VerticalBarSeries id={props.name}
+                        cluster='w'
+                        onNearestXY={(value) => setDataPoint(value)}
+                        animation
+                        data={mappedData[1]['W']}
+                        color={colors['W']}
+                        opacity='1'
+                    />
+
+
+
+                    <VerticalBarSeries id={props.name}
+                        cluster='h'
+                        onNearestXY={(value) => setDataPoint(value)}
+                        animation
+                        data={mappedData[2]['H']}
+                        color={colors['H']}
+                        opacity='1'
+                    />
+                                        <VerticalBarSeries id={props.name}
+                        cluster='b'
+                        onNearestXY={(value) => setDataPoint(value)}
+                        animation
+                        data={mappedData[3]['B']}
+                        color={colors['B']}
+                        opacity='1'
+                    />
+                                        <VerticalBarSeries id={props.name}
                         cluster='a'
                         animation
                         data={mappedData[0]['A']}
-                        color="purple"
-                        opacity='.5'
+                        color={colors['A']}
+                        opacity='1'
                     />
                     <VerticalBarSeries id={props.name}
                         cluster='o'
                         onNearestXY={(value) => setDataPoint(value)}
                         animation
                         data={mappedData[4]['O']}
-                        color="violet"
-                        opacity='.5'
-                    />
-                    <VerticalBarSeries id={props.name}
-                        cluster='w'
-                        onNearestXY={(value) => setDataPoint(value)}
-                        animation
-                        data={mappedData[1]['W']}
-                        color="blue"
-                        opacity='.5'
-                    />
-                    <VerticalBarSeries id={props.name}
-                        cluster='b'
-                        onNearestXY={(value) => setDataPoint(value)}
-                        animation
-                        data={mappedData[3]['B']}
-                        color="red"
-                        opacity='.5'
-                    />
-                    <VerticalBarSeries id={props.name}
-                        cluster='h'
-                        onNearestXY={(value) => setDataPoint(value)}
-                        animation
-                        data={mappedData[2]['H']}
-                        color="orange"
-                        opacity='.5'
+                        color={colors['O']}
+                        opacity='1'
                     />
                 </XYPlot>
 
