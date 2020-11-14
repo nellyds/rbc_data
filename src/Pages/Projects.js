@@ -10,10 +10,17 @@ const goTo = (event) =>{
     console.log(event.target.id)
     history.push('/' +event.target.id)
   } 
+  const pages = [{
+      id: 'covid', name: 'US Covid Data',
+  },
+{ id: 'police', name: 'Police Shootings',},
+{ id: 'gameSales', name: 'Game Sales'}]
     return(
         <div>
-            <p onClick={goTo} id="covid">Covid</p>
-            <p onClick={goTo} id="police">Police Shootings</p>
+            {pages.map((d)=>
+                <p key={d.id} id={d.id} onClick={goTo}> {d.name} </p>
+            )
+}
         </div>
     )    
 }

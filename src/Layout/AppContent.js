@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import PoliceShootings from "../Pages/PoliceShootings"
+import GameSales from "../Pages/GameSales"
 import USCovid from "../Pages/USCovid"
 import About from "../Pages/About"
 import Projects from "../Pages/Projects"
@@ -13,6 +14,7 @@ function AppContent(){
       <Route path="/covid" component={USCovid} />
       <Route path="/about" component={About} />
       <Route path="/police" component={PoliceShootings} />
+      <Route path="/gameSales" component ={GameSales} />
   </Switch>
   </CenterDiv>
     )
