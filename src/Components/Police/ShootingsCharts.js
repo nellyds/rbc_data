@@ -20,7 +20,6 @@ const TrendChart = (props) => {
     }
     )
 
-    
     const dataArr = data.map((d) => {
         return {
             x: d.date,
@@ -31,14 +30,14 @@ const TrendChart = (props) => {
     const wArr = data.map((d) => {
         return {
             x: d.date,
-            y: d.race.w,
+            y: d.race.White,
             z: 'White'
         }
     })
     const bArr = data.map((d) => {
         return {
             x: d.date,
-            y: d.race.b,
+            y: d.race.Black,
             z: 'Black'
         }
     })
@@ -46,14 +45,14 @@ const TrendChart = (props) => {
     const hArr = data.map((d) => {
         return {
             x: d.date,
-            y: d.race.h,
+            y: d.race.Hispanic,
             z: 'Hispanic'
         }
     })
     const aArr = data.map((d) => {
         return {
             x: d.date,
-            y: d.race.a,
+            y: d.race.Asian,
             z: 'Asian'
         }
     })
@@ -61,10 +60,11 @@ const TrendChart = (props) => {
     const oArr = data.map((d) => {
         return {
             x: d.date,
-            y: d.race.o,
+            y: d.race.Other,
             z: 'Other'
         }
     })
+    
     return (
 
         <ScrollAnimation animateIn="fadeInLeft" animateOut="fadeInRight" >

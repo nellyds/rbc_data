@@ -40,3 +40,17 @@ justify-content: center;
 align-content: center;
 text-align: center;
 margin: 10px;`
+export const SortKey = styled.div`
+margin: 5px;
+padding: 2px;
+color: red;
+border: solid 2px black;
+`
+
+export const CardKey = styled.div`
+margin: 5px;
+padding: 5px;
+border-radius: 10px;
+border: solid 3px blue;
+width: 250px;
+`

@@ -36,7 +36,7 @@ function RaceChart(props) {
         <div>
             <ChartHolder>
                 <XYPlot
-                    className="clustered-stacked-bar-chart-example"
+                   
                     xType="ordinal"
 
                     width={scrWidth}

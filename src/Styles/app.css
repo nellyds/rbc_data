@@ -13,3 +13,11 @@ body{
     background-color: black;
     color: white;
 }
+
+.sorts{
+    display: flex;
+    flex-direction: row;
+    border: solid 2px black;
+    padding: 5px;
+    margin: 5px;
+}

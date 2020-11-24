@@ -2,6 +2,7 @@ import React, { createContext } from 'react'
 import { readRemoteFile } from 'react-papaparse';
 import moment, { months } from 'moment';
 import { races } from "../Util/Constants"
+import PoliceShootings from "../Pages/PoliceShootings"
 export const DataContext = React.createContext();
 
 export default class DataContextProvider extends React.Component {
@@ -73,11 +74,11 @@ export default class DataContextProvider extends React.Component {
                 signs_of_mental_illness: monthsData.filter((d) => d.signs_of_mental_illness !== "unarmed").length,
                 armed: monthsData.filter((d) => d.armed === "True").length,
                 race: {
-                    w: monthsData.filter((d) => d.race === "W").length,
-                    b: monthsData.filter((d) => d.race === "B").length,
-                    h: monthsData.filter((d) => d.race === "H").length,
-                    a: monthsData.filter((d) => d.race === "A").length,
-                    o: monthsData.filter((d) => d.race === "O").length
+                    White: monthsData.filter((d) => d.race === "W").length,
+                    Black: monthsData.filter((d) => d.race === "B").length,
+                    Hispanic: monthsData.filter((d) => d.race === "H").length,
+                    Asian: monthsData.filter((d) => d.race === "A").length,
+                    Other: monthsData.filter((d) => d.race === "O").length
                 }
             }
         })
@@ -110,4 +111,12 @@ export default class DataContextProvider extends React.Component {
 
         )
     }
+}
+
+export function DataContextContainer(){
+    return(
+        <DataContextProvider>
+<PoliceShootings />
+        </DataContextProvider>
+    )
 }

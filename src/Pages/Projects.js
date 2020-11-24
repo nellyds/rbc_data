@@ -1,7 +1,5 @@
 import React from 'react'
-import { Route} from 'react-router-dom';
-import PoliceShootings from "./PoliceShootings"
-import USCovid from "./USCovid"
+
 import { useHistory } from "react-router-dom";
 import { PageHeader } from "../Styles/StyledComponents"
 function Projects(){
@@ -13,7 +11,8 @@ const goTo = (event) =>{
       id: 'covid', name: 'US Covid Data',
   },
 { id: 'police', name: 'Police Shootings',},
-{ id: 'gameSales', name: 'Game Sales'}]
+{ id: 'gameSales', name: 'Game Sales'},
+{ id: 'visualizer', name: 'Visualizer'}]
     return(
         <div>
             <PageHeader>Data Visualizations</PageHeader>
