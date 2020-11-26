@@ -54,3 +54,22 @@ border-radius: 10px;
 border: solid 3px blue;
 width: 250px;
 `
+export const KeyHolder = styled.div`
+@media (min-width: 316px){
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 10px;
+    content-align: center;
+    justify-content: center;
+    align-content: center;
+}
+@media (max-width: 315px){
+    margin: 10px;
+    content-align: center;
+    justify-content: center;
+    align-content: center;
+}
+}
+
+`

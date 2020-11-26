@@ -7,7 +7,7 @@ import {CenterDiv} from "../Styles/StyledComponents"
 import {GameContextContainer} from "../Contexts/GameContext"
 import {CovidContextContainer} from "../Contexts/CovidContext"
 import {DataContextContainer} from "../Contexts/DataContext"
-
+import { HouseHoldDataContainer } from '../Contexts/HouseHoldContext';
 
 function AppContent(){
     return(
@@ -19,7 +19,7 @@ function AppContent(){
       <Route path="/police" component={DataContextContainer} />
       <Route path="/gameSales" component ={GameContextContainer} />
       <Route path="/visualizer" component= {VisualizerContainer} />
-
+      <Route path="/houseHold" component = {HouseHoldDataContainer} />
       <Route path="/" component={Projects} exact />
   </Switch>
   </CenterDiv>

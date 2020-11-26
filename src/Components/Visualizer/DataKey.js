@@ -16,10 +16,7 @@ export default function DataKey(props) {
         if (type.filter((d) => d.name === "isYear").length > 0) { setIsTime(true) }
         if (type.filter((d) => d.name === "isNumber").length > 0) { setIsNumber(true) }
     }
-    const checkNumber = () => {
 
-    }
-    const handleDataKeySelect = props.handleDataKeySelect
     return (
         <div>
             <Animated animationIn="fadeInLeft" animationOut="fadeOut" isVisible={true}>
@@ -35,6 +32,7 @@ export default function DataKey(props) {
                         :
                         <p />
                     }
+                    <p onClick={() => props.setKey(props.name)}>Build a chart using this dataKey. </p>
                 </CardKey>
             </Animated>
 

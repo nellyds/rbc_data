@@ -3,7 +3,6 @@ import Chart from 'react-apexcharts'
 
 function PublisherTreeMap(props) {
   const data = props.data
-  console.log(props)
   const options = {
     legend: {
       show: false

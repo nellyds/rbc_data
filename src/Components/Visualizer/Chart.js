@@ -18,15 +18,16 @@ export default function Chart(props) {
     }
     )
 
-    const chartLegends = chartData.map((d)=>{return{
-        title: d.field,
-        color: d.color
-    }})
-    console.log(chartData)
+    const chartLegends = chartData.map((d) => {
+        return {
+            title: d.field,
+            color: d.color
+        }
+    })
     return (
         <div>
             <ChartHolder>
-                
+
                 <XYPlot
                     xType="ordinal"
                     width={scrWidth}
@@ -35,22 +36,22 @@ export default function Chart(props) {
                     <HorizontalGridLines />
                     <XAxis style={{
                         line: { stroke: '#ADDDE1' },
-                        ticks: { stroke: '#ADDDE1' }
+
                     }} />
                     <YAxis title={props.name}
                         style={{
                             line: { stroke: '#ADDDE1' },
-                            ticks: { stroke: '#ADDDE1' }
+
                         }}
                     />
-                            <DiscreteColorLegend
+                    <DiscreteColorLegend
                         style={{ position: 'absolute', right: '50px', top: '10px', backgroundcolor: 'White' }}
                         orientation="horizontal"
                         items={chartLegends}
                     />
                     {chartData.map((d) =>
                         <VerticalBarSeries id={d.field}
-                        cluster={d.field}
+                            cluster={d.field}
                             onNearestXY={(value) => setDataPoint(value)}
                             animation
                             data={d.data}
