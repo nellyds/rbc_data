@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react'
-import { XYPlot, XAxis, YAxis, MarkSeries, LineSeries } from 'react-vis'
+import { XYPlot, XAxis, YAxis, MarkSeries, LineMarkSeries, LineSeries } from 'react-vis'
 export default function HouseHoldBubble(props) {
 
 
@@ -22,7 +22,7 @@ export default function HouseHoldBubble(props) {
             return [{
                 x: d.year,
                 y: d.share,
-                size:  i === hoverIndex ? d.gdp : .1,
+                size: d.gdp,
                 name: d.name,
                 index: i,
             }]
@@ -36,20 +36,28 @@ export default function HouseHoldBubble(props) {
             {sortedData.length > 0
                 ?
                 <div>
-                    <p>{hoverIndex}</p>
+
                     <XYPlot yDomain={[-1, 50]}
-                        onMouseLeave={() => setIndex(null)}
                         xDomain={[1970, 2030]} width={500} height={500}>
-                        <XAxis />
-                        <YAxis />
-                        {allMarks.map((d,i) =><MarkSeries 
-                        key={i}
-                        onSeriesClick={(data) =>setIndex(data.index)}
-                        data={d} />)
+                        <XAxis  
+                        tickFormat={Number}
+                    tickLabelAngle={90}   
+                    title="Year"                     
+                        />
+                        <YAxis title="Percentage households headed by unmarried"/>
+                        {allMarks.map((d, i) =>
+                            <MarkSeries
+                                sizeRange={i === hoverIndex ? [30, 40] : [1, 30]}
+                                key={i}
+                                onValueMouseOver={(data) => setIndex(data.index)}
+                                onValueMouseOut={() => setIndex(null)}
+                                data={d}
+                                opacity={i === hoverIndex ? 1 : .1}
+                            />)
                         }
                         {
                             sortedData.map((d, i) =>
-                                <LineSeries key={i} id={i}
+                                <LineMarkSeries key={i} id={i}
                                     animation
                                     data={d}
                                 />

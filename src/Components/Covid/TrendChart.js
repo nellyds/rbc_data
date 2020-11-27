@@ -36,10 +36,10 @@ const TrendChart = (props) => {
                 height={500}>
                 <VerticalGridLines />
                 <HorizontalGridLines />
-                <XAxis title="Date" style={{
-                    line: { stroke: '#ADDDE1' },
-                    ticks: { stroke: '#ADDDE1' }
-                }} />
+                <XAxis title="Date" 
+           
+                tickLabelAngle={90}
+                />
                 <YAxis title={props.name}
                     style={{
                         line: { stroke: '#ADDDE1' },
