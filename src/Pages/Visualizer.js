@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { VisualizerContext } from "../Contexts/VisualizerContext"
-import { PageHeader } from "../Styles/StyledComponents"
+import { PageHeader, Paragraph } from "../Styles/StyledComponents"
 import FieldSelect from "../Components/Forms/FieldSelect"
 import CSVUpload from "../Components/Forms/CSVUpload"
 import Chart from "../Components/Visualizer/Chart"
@@ -36,7 +36,8 @@ export default function Visualizer() {
     }
     return (
         <div>
-            <PageHeader id="2" >Visualizer</PageHeader>
+            <PageHeader id="2" >Visualizer</PageHeader> 
+            <Paragraph>First attempt at making a data visualizer.  It works fine with certain kinds of data sets, but it too format dependent and I am too lazy.  </Paragraph>
             <p>Upload a dataset in csv format</p>
             <CSVUpload setData={setData} />
             <p>{selectedDataKey}</p>

@@ -4,7 +4,7 @@ import { StatGrid, CenterDiv } from "../Styles/StyledComponents"
 import { getAverage, getField } from "../Util/DataParseMethods"
 import FieldSelect from "../Components/Forms/FieldSelect"
 import Button from '@material-ui/core/Button';
-import { PageHeader } from "../Styles/StyledComponents"
+import { PageHeader , Paragraph} from "../Styles/StyledComponents"
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Select from '@material-ui/core/Select';
@@ -31,6 +31,7 @@ const buildChart = async () => {
 return (
     <div>
                     <PageHeader >US Covid data</PageHeader>
+                    <Paragraph>First foray into data vis in both React and using React vis.  Depressing, no?</Paragraph>
         {current != null && pastWeek != null
             ?
             <CenterDiv>

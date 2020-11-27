@@ -4,7 +4,7 @@ import PublisherTreeMap from "../Components/GameSales/PublisherTreeMap"
 import FieldSelect from "../Components/Forms/FieldSelect"
 import TitlesChart from "../Components/GameSales/TitlesChart"
 import ChartBuilder from "../Components/GameSales/ChartBuilder"
-import { PageHeader } from "../Styles/StyledComponents"
+import { PageHeader, Paragraph } from "../Styles/StyledComponents"
 function GameSales() {
 
     const { topPublishers, dataReady, topTwenty } = useContext(GameDataContext)
@@ -24,7 +24,7 @@ function GameSales() {
     return (
         <div>
 <PageHeader >Top Game publishers</PageHeader>
-
+<Paragraph>The pattern for working with CSV are getting a bit more obvious, but I wanted to try out Apex Charts instead of React-vis.  Conclusion, syntax is bit too unwieldy even if it does a surprising amount of boilerplate configuration for you.  </Paragraph>
 
             { dataReady && topPublishers.length > 40 ?
                 <div>

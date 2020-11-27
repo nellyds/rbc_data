@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { DataContext } from "../Contexts/DataContext"
-import { PageHeader } from "../Styles/StyledComponents"
+import { PageHeader, Paragraph} from "../Styles/StyledComponents"
 import ShootingsCharts from "../Components/Police/ShootingsCharts"
 import RaceChart from "../Components/Police/RaceChart"
 import FieldSelect from "../Components/Forms/FieldSelect"
@@ -14,7 +14,11 @@ function PoliceShootings() {
 
     return (
         <div>
-            <PageHeader >Police Shootings</PageHeader>
+            <PageHeader >Police Shootings</PageHeader> 
+            <Paragraph>For my second time working with React-vis, I started working with CSV files.  I have to say, it makes the need for a relational database much more apparent, little as I like SQL.
+            Sorting the values by month and race was the sort of thing that would be a bit easier in Python, but the collection methods of ES6 are pretty intuitive to use.  Stacking graphcs made for a neat effect.  
+
+            </Paragraph>
             <FieldSelect fields={yearRange}  dailyField={year} setField={setYear} />
             <p>{year}</p>
             {shootingDataReady && monthlyData.length > 0 ?
