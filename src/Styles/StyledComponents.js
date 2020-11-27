@@ -6,6 +6,28 @@ margin: 5px;
 text-align: center;
 `
 
+export const Paragraph = styled.div`
+@media (min-width: 316px){
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 10px;
+    width: 40%;
+    margin-left: 30%;
+    content-align: center;
+    justify-content: center;
+    align-content: center;
+}
+@media (max-width: 315px){
+    margin: 10px;
+    content-align: center;
+    justify-content: center;
+    align-content: center;
+}
+}
+`
+
+
 export const DataPoint = styled.div`
 font-family: 'Roboto Mono';
 margin: 10px;
@@ -71,5 +93,29 @@ export const KeyHolder = styled.div`
     align-content: center;
 }
 }
+`
+export const VariableChartBox = styled.div`
+display: flex;
+content-align: center;
+justify-content: center;
+`
+
+
+export const MultiSelectBox = styled.div`
+margin: 5px;
+display: flex;
+flex-direction: row;
+content-align: center;
+justify-content: center;
+align-content: center;
+`
+
+export const ChipBox = styled.div`
+margin: 5px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
 
 `
+

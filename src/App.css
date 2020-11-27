@@ -12,7 +12,17 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+button{
+  color: black;
+  border-radius: 5px;
+  border: solid 2px black;
+}
+.multiText{
+  color: red
+}
+.multiSelectButton{
+  border: solid 3px black;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
