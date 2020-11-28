@@ -34,3 +34,9 @@ body{
     color: black;
     background-color: white;
 }
+
+.tabHead{
+    width: 100px;
+    height: 30px;
+    border: solid 2px black;
+}

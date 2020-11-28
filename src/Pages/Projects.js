@@ -13,7 +13,8 @@ const goTo = (event) =>{
 { id: 'police', name: 'Police Shootings',},
 { id: 'gameSales', name: 'Game Sales'},
 { id: 'visualizer', name: 'Visualizer'},
-{id: 'houseHold', name: 'House Hold Composition vs. GDP'}]
+{id: 'houseHold', name: 'House Hold Composition vs. GDP'},
+{id: 'homicides', name: 'Global Homicide Trends' }]
     return(
         <div>
             <PageHeader>Data Visualizations</PageHeader>

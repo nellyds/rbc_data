@@ -7,7 +7,7 @@ text-align: center;
 `
 
 export const Paragraph = styled.div`
-@media (min-width: 316px){
+@media (min-width: 416px){
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -18,8 +18,9 @@ export const Paragraph = styled.div`
     justify-content: center;
     align-content: center;
 }
-@media (max-width: 315px){
-    margin: 10px;
+@media (max-width: 415px){
+    margin: 5px;
+    font-size: .9em;
     content-align: center;
     justify-content: center;
     align-content: center;

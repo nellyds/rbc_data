@@ -3,12 +3,11 @@ import clsx from 'clsx';
 import '../Styles/app.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import { useHistory } from "react-router-dom";
-import { DataPoint, ListPoint} from "../Styles/StyledComponents"
+import { ListPoint} from "../Styles/StyledComponents"
 import AppContent from "./AppContent"
 import img from "../Assets/icon.png"
 const useStyles = makeStyles({
@@ -41,7 +40,7 @@ export default function TemporaryDrawer() {
   const list = (anchor) => (
     <div 
       className={clsx(classes.list, {
-        [classes.fullList]: anchor === 'top' || anchor === 'bottom',
+        [classes.fullList]:  anchor === 'bottom',
       })}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}

@@ -76,7 +76,8 @@ export default function HouseHoldBubble(props) {
                         }
                         {sortedData.map((d, i) =>
                                 <LineMarkSeries key={i} id={i}
-
+                                    onValueMouseOver={(data) =>setValue(data)}
+                                    onSeriesMouseOut={() =>setValue(null)}
                                     animation
                                     data={d}
                                 />
