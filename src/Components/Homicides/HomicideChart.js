@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { ChartHolder } from "../../Styles/StyledComponents"
-import { XYPlot, XAxis, YAxis, LineMarkSeries, DiscreteColorLegend, Crosshair, Hint } from 'react-vis'
+import { XYPlot, XAxis, YAxis, LineMarkSeries, DiscreteColorLegend, Hint } from 'react-vis'
 
 export default function HomicideChart({ gdp = [], homicide = [] }) {
-
-    const [value, setValue] = useState(null)
     const [selectedIndex, setIndex] = useState(null)
-    const [scrWidth, setScrWidth] = useState(500)
     const [hValue, setHValue] = useState(null)
     const [gValue, setGValue] = useState(null)
     const fields = gdp.map((d) => {
@@ -15,14 +12,6 @@ export default function HomicideChart({ gdp = [], homicide = [] }) {
             color: d.color
         }
     })
-    function handleResize() {
-        setScrWidth(Math.floor(window.innerWidth * .8))
-    }
-    useEffect(() => {
-        window.addEventListener('resize', handleResize)
-        setScrWidth(window.innerWidth < 600  ? Math.floor(window.innerWidth * .8) : 800)
-    }
-    )
     return (
         <div>
 
@@ -31,9 +20,8 @@ export default function HomicideChart({ gdp = [], homicide = [] }) {
                     <ChartHolder>
                         <DiscreteColorLegend items={fields} />
                         <XYPlot
-                            yDomain={[-1, 50]}
                             xDomain={[1990, 2020]}
-                            width={scrWidth} height={300}>
+                            width={350} height={300}>
                             <XAxis
                                 tickFormat={Number}
                                 tickLabelAngle={90}
@@ -43,32 +31,30 @@ export default function HomicideChart({ gdp = [], homicide = [] }) {
                             {homicide.map((d, i) =>
                                 <LineMarkSeries data={d.homicideData}
                                     onValueMouseOver={(data) => setHValue(data)}
-        
-                                    onValueMouseOut={() =>setHValue(null)}
+                                    size={2}
+                                    onValueMouseOut={() => setHValue(null)}
                                     onSeriesMouseOver={() => setIndex(i)}
                                     onSeriesMouseOut={() => setIndex(null)}
-
+                                    size={i === selectedIndex ? 5 : 2}
                                     opacity={i !== selectedIndex ? .3 : 1}
                                     key={i} color={d.color} />
                             )}
-
                         </XYPlot>
                         <XYPlot
-                            yDomain={[-1, 50]}
                             xDomain={[1990, 2020]}
-                            width={scrWidth} height={300}>
+                            width={350} height={300}>
                             <XAxis
                                 tickFormat={Number}
                                 tickLabelAngle={90}
                                 title="Year"
                             />
-                            <YAxis title="G.D.P."/>
+                            <YAxis title="G.D.P." />
                             {gdp.map((d, i) =>
                                 <LineMarkSeries data={d.gdpData}
-                                     onValueMouseOver={(data) => setGValue(data)}
-
+                                    onValueMouseOver={(data) => setGValue(data)}
+                                    size={i === selectedIndex ? 5 : 2}
                                     onSeriesMouseOver={() => setIndex(i)}
-                                    onValueMouseOut={() =>setGValue(null)}
+                                    onValueMouseOut={() => setGValue(null)}
                                     onSeriesMouseOut={() => setIndex(null)}
                                     opacity={i !== selectedIndex ? .3 : 1}
                                     key={i} color={d.color} />

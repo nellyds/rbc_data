@@ -120,3 +120,9 @@ justify-content: center;
 
 `
 
+export const center = styled.div`
+width: 400px;
+border: solid 2px black;
+background-color: rgba(0,0,0,.1)
+
+`
