@@ -1,5 +1,6 @@
 import React from 'react'
 import { readRemoteFile } from 'react-papaparse';
+import { graphColors} from "../Util/Constants"
 import Homicide from "../Pages/Homicides"
 import moment from 'moment'
 export const HomicideContext = React.createContext();
@@ -45,8 +46,8 @@ export default class HomicideContextProvider extends React.Component {
         try{
         readRemoteFile('https://raw.githubusercontent.com/nellyds/dataSets/master/homicide-rate.csv', {
             complete: async (result) => {
-                countryList.map((d) => {
-                    data.push({ name: d, homicideData: this.getHomicideData(result.data, d) })
+                countryList.map((d,i) => {
+                    data.push({ name: d, homicideData: this.getHomicideData(result.data, d), color: graphColors[i]})
                 })
             }
         })
@@ -60,8 +61,8 @@ export default class HomicideContextProvider extends React.Component {
         let data = []
         readRemoteFile('https://raw.githubusercontent.com/nellyds/dataSets/master/real-gdp-per-capita-PennWT.csv', {
             complete: async (result) => {
-                countryList.map((d) => {
-                    data.push({ name: d, gdpData: this.getGDPData(result.data, d) })
+                countryList.map((d,i) => {
+                    data.push({ name: d, gdpData: this.getGDPData(result.data, d) , color: graphColors[i]})
                 })
             }
         })
@@ -82,7 +83,7 @@ export default class HomicideContextProvider extends React.Component {
         let result =  data.filter((d) => d[0] === country && moment(d[2]).isAfter(moment('1989')) && d[3] !== "").map((d) => {
          
             return {
-                x: parseInt(d[2]), y: parseFloat(d[3]),name: country, year: d[2], gdp: parseFloat(d[3])
+                x: parseInt(d[2]), y: Math.floor(parseFloat(d[3] * .001)),name: country, year: d[2], gdp: d[3]
             }
         })
         return result

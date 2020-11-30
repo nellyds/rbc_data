@@ -36,30 +36,25 @@ export default function Homicides() {
     return (
         <div>
             <PageHeader>Global Homicide Trends</PageHeader>
-            <Tabs>
-                <MultiSelectBox>
-                    <div class="tabHead">
-                        <Tab><CommentIcon /></Tab>
-                    </div>
-                    <div class="tabHead">
-                        <Tab><SearchIcon /></Tab>
-                    </div>
-                    <div onClick={compile} class="tabHead">
-                        <Tab><BarChartIcon /></Tab>
-                    </div>
-                </MultiSelectBox>
+         
 
-                <Panel><Paragraph>The formatting of WorldInData csvs made this easy enough to start working with.  Trying to get a better UI experience more than anything else.  </Paragraph></Panel>
-                <Panel>
+
+               <Paragraph>The formatting of WorldInData csvs made this easy enough to start working with.  Trying to get a better UI experience more than anything else.  </Paragraph>
+                
                     <MultiSelectBox>
                         <FilterSelect fields={countries} addToList={addToCountryList} />
                         <div>
                             {countryList.map((d) => <p id={d} onClick={removeCountryFromList}> Select: {d} </p>)}
                         </div>
                     </MultiSelectBox>
-                </Panel>
-                <Panel><HomicideChart gdp={gdpData} homicide={homicideData} /></Panel>
-            </Tabs>
+                    <MultiSelectBox>
+
+<div onClick={compile} class="tabHead">
+</div>
+</MultiSelectBox>
+                    
+                    <HomicideChart gdp={gdpData} homicide={homicideData} />
+         
         </div>
     )
 }

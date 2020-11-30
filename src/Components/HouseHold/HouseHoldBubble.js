@@ -1,6 +1,6 @@
 
 import React, { useState , useEffect} from 'react'
-import { XYPlot, XAxis, YAxis, MarkSeries, LineMarkSeries, LineSeries, Hint } from 'react-vis'
+import { XYPlot, XAxis, YAxis, MarkSeries, LineMarkSeries, Hint } from 'react-vis'
 import { VariableChartBox} from "../../Styles/StyledComponents"
 
 import BarChartIcon from '@material-ui/icons/BarChart';
