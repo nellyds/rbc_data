@@ -1,69 +1,77 @@
 
 import React, { useContext, useState } from 'react'
-import { PageHeader, Paragraph, MultiSelectBox, CenterDiv} from "../Styles/StyledComponents"
+import { PageHeader, Paragraph, MultiSelectBox, ChipBox } from "../Styles/StyledComponents"
 import CoolTabs from 'react-cool-tabs';
 import SearchIcon from '@material-ui/icons/Search';
 import CommentIcon from '@material-ui/icons/Comment';
+import Chip from '@material-ui/core/Chip';
+import CancelIcon from '@material-ui/icons/Cancel';
 import Tooltip from '@material-ui/core/Tooltip';
 import HomicideChart from "../Components/Homicides/HomicideChart"
 import FilterSelect from "../Components/Forms/FilterSelect"
 import { HomicideContext } from "../Contexts/HomicideContext"
-import BarChartIcon from '@material-ui/icons/BarChart';
 export default function Homicides() {
 
     const { countries, compileChartData, gdpData, homicideData } = useContext(HomicideContext)
     const [countryList, setCountryList] = useState([])
-
+    const [dataReady, setReady] = useState(false)
     const addToCountryList = (event) => {
         setCountryList([...countryList, event.target.id])
     }
 
-    const removeCountryFromList = (event) => {
-        let arr = countryList.filter((d) => d !== event.target.id)
+    const removeCountry = (event) => {
+        console.log(event)
+        let arr = countryList.filter((d) => d !== event.target.innerHTML)
         if (countryList.length === 1) {
             setCountryList([])
         }
         setCountryList([...arr])
     }
 
-    const compile = () => {
-        console.log('reached')
+    const compile = async () => {
         if (countryList.length > 0) {
             compileChartData(countryList)
+
         }
+    }
+
+    const fetch = async () => {
+        compile()
+        await setReady(true)
     }
     return (
         <div>
             <PageHeader>Global Homicide Trends</PageHeader>
             <Paragraph>The formatting of WorldInData csvs made this easy enough to start working with.  Trying to get a better UI experience more than anything else.  </Paragraph>
+
             <center>
-            <CoolTabs
-                tabKey={'1'}
-                style={{ width: 400, height: 800, background: 'white' }}
-                activeTabStyle={{ background: 'black', color: 'white' }}
-                unActiveTabStyle={{ background: 'white', color: 'black' }}
-                activeLeftTabBorderBottomStyle={{ background: 'black', height: 4 }}
-                activeRightTabBorderBottomStyle={{ background: 'black', height: 4 }}
-                tabsBorderBottomStyle={{ background: 'white', height: 4 }}
-                leftTabTitle={<SearchIcon />}
-                rightTabTitle={<BarChartIcon />}
-                leftContent={
-                    <div>
+
+                <div>
                     <MultiSelectBox>
                         <FilterSelect fields={countries} addToList={addToCountryList} />
                         <div>
-                            {countryList.map((d) => <p id={d} onClick={removeCountryFromList}> {d} : X </p>)}
+                            <ChipBox>
+                        {countryList.map((d, i) =>
+
+<Chip
+    variant="outlined"
+    size="small"
+    icon={<CancelIcon />}
+    label={d}
+    onClick={removeCountry}
+    id={d} />
+)}
+</ChipBox>
                         </div>
                     </MultiSelectBox>
-                    <p onClick={compile}>Compile Chart</p>
-                    </div>
-                }
-                rightContent={
-                    <HomicideChart gdp={gdpData} homicide={homicideData} />
-                }
-                contentTransitionStyle={'transform 0.6s ease-in'}
-                borderTransitionStyle={'all 0.6s ease-in'} />
-                </center>
+                    <Tooltip title="Fetch Data">
+                        <SearchIcon onClick={fetch} />
+                    </Tooltip>
+                </div>
+                <div>
+                    <HomicideChart gdp={gdpData} homicide={homicideData} ready={dataReady} />
+                </div>
+            </center>
         </div>
     )
 }
