@@ -9,6 +9,7 @@ import {CovidContextContainer} from "../Contexts/CovidContext"
 import {DataContextContainer} from "../Contexts/DataContext"
 import { HouseHoldDataContainer } from '../Contexts/HouseHoldContext';
 import {HomicideContainer} from "../Contexts/HomicideContext";
+import {CFPContainer} from "../Contexts/CFPContext"
 
 function AppContent(){
     return(
@@ -22,6 +23,7 @@ function AppContent(){
       <Route path="/visualizer" component= {VisualizerContainer} />
       <Route path="/houseHold" component = {HouseHoldDataContainer} />
       <Route path="/homicides" component= {HomicideContainer} />
+      <Route path="/cfp" component={CFPContainer} />
       <Route path="/" component={Projects} exact />
   </Switch>
   </CenterDiv>

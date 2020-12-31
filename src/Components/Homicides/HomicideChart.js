@@ -72,3 +72,4 @@ export default function HomicideChart({ gdp = [], homicide = []}) {
         </div>
     )
 }
+

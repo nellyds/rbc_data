@@ -14,7 +14,8 @@ const TrendChart = (props) => {
     }
     useEffect(() => {
         window.addEventListener('resize', handleResize)
-        setScrWidth(Math.floor(window.innerWidth * .8))
+
+        setScrWidth(window.innerWidth > 300 ? 320 : Math.floor(window.innerWidth * .9))
 
     }
     )
