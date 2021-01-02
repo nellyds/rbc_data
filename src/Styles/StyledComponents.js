@@ -126,3 +126,63 @@ border: solid 2px black;
 background-color: rgba(0,0,0,.1)
 
 `
+
+export const CFPCopyDiv = styled.div`
+    font-size: .8em;
+    text-align: right;
+padding: 10px;
+background-color: rgba(0,0,0,.05);
+    height:125px;
+`
+
+export const NEXT = "NEXT";
+export const PREV = "PREV";
+
+export const Item = styled.div`
+  background-image: ${(props) => `url(${props.img})`};
+`;
+
+export const CarouselContainer = styled.div`
+  display: flex;
+  transition: ${(props) => (props.sliding ? "none" : "transform 1s ease")};
+  transform: ${(props) => {
+    if (!props.sliding) return "translateX(calc(-100% - 0px))";
+    if (props.dir === PREV) return "translateX(calc(2 * (-100% -0px)))";
+    return "translateX(0%)";
+  }};
+`;
+
+export const Wrapper = styled.div`
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 5px 5px 20px 7px rgba(168, 168, 168, 1);
+`;
+
+export const CarouselSlot = styled.div`
+  flex: 1 0 100%;
+  font-size: 10px;
+  order: ${(props) => props.order};
+`;
+
+export const SlideButton = styled.button`
+    color: #ffffff;
+  font-family: 'Roboto Mono';
+    font-size: 12px;
+    padding: 10px;
+    background-color: black;
+    border: 1px solid white;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+  margin-top: 10px;
+  text-decoration: none;
+  float: ${(props) => props.float};
+
+  &:active {
+    position: relative;
+    top: 1px;
+  }
+  &:focus {
+    outline: 0;
+  }
+`;

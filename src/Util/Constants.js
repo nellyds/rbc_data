@@ -374,3 +374,23 @@ export const CFPFields = [
     {name: 'BRICS + Africa', value: 6},
     {name: 'reset', value: null}
 ]
+
+export const CFPcopy = [
+    "",
+    "If you have ever wanted to know the reason I am a climate-change bear, this is it.",
+    "On the Y-Axis is Carbon Footprint per Capita",
+    "On the X-Axis is GDP per Capita.",
+    "The Size of the dot represents population",
+    "Nothing about the X-Axis plotting should be surprising.  Lots of rich countries, some high polluting ones.  But break it out differently.",
+    "Note the OECD distribution.  Quite a few high GDP, lowish CFP countries.  Great!  Way to go Norway!",
+    "Now let's look at Africa + BRIC: the clustering is super dense in low CFP, low GDP.  Not good!  They are not low CFP per lack of development.",
+    "To get even more pessimistic, drag the year slider, and note the two gigantic dots moving.  Those are India and China, who are in the aggregate high CFP countries whose percapita rankings are low because much of the country isn't industrialized! In fact, Africa + India, China are 3 billion peopole!",
+    "Making Denmark carbon neutral is nice, but six million people at a CFP of zero isn't going to be as useful as 130 million (Nigeria) to zero while GDP tops 10k is more imporant.",
+    "In other words, we are waiting for the big change in consumer consumption to hit there as it has in the west."
+]
+
+export const CFPPara = "Much of the challenge ahead is not what happens in the OECD, it is what happens in the developing world.  More worryingly, the likelihood that all of the developing world industrialize and become modern consumer economies on new green, technology rather than old, cheap, and dirty seems unlikely.n\
+If all the energy/manufacturing breakthroughs are developing in poor countries, that would be great, but unlikely.  Subsidizing the greening of the developing world, tax subsidies for energy firms and lowering tariffs are unpopular in OECD countries.n\
+Reducing inequality between nations is something that left-wing people ostensibly care about, but ignoring the real strides made in fighting poverty suggests they will hold anything good hostage to their real and only issue, inequality in their home countries. n\
+"
+

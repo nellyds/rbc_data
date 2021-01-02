@@ -68,12 +68,22 @@ export default class CFPContextProvider extends React.Component {
         obj.year = parseInt(year);
         obj.country = country
        
-        obj.cfp = cfpData.filter((d) => d[0] === country && d[2] === year) !== undefined > 0 
-        && cfpData.filter((d) => d[0] === country && d[2] === year)[0][3] !== undefined
-        ? parseFloat(obj.cfp = cfpData.filter((d) => d[0] === country && d[2] === year)[0][3]) : "No data available"
-        obj.gdp = gdpData.filter((d) => d[0] === country && d[2] === year) !== undefined  
-        && gdpData.filter((d) => d[0] === country && d[2] === year)[0][3] !== undefined
-        ? parseFloat(obj.gdp = gdpData.filter((d) => d[0] === country && d[2] === year)[0][3]) * .001 : "No data available"
+        // obj.cfp = cfpData.filter((d) => d[0] === country && d[2] === year) !== undefined > 0 
+        // && cfpData.filter((d) => d[0] === country && d[2] === year)[0][3] !== undefined
+        // ? parseFloat(obj.cfp = cfpData.filter((d) => d[0] === country && d[2] === year)[0][3]) : "No data available"
+        try{
+            obj.cfp = parseFloat(obj.cfp = cfpData.filter((d) => d[0] === country && d[2] === year)[0][3])
+        } catch(e){
+            obj.cfp = parseFloat(obj.cfp = cfpData.filter((d) => d[0] === country && d[2] === 2000)[0][3])
+        }
+        // obj.gdp = gdpData.filter((d) => d[0] === country && d[2] === year) !== undefined  
+        // && gdpData.filter((d) => d[0] === country && d[2] === year)[0][3] !== undefined
+        // ? parseFloat(obj.gdp = gdpData.filter((d) => d[0] === country && d[2] === year)[0][3]) * .001 : "No data available"
+        try{
+            obj.gdp = parseFloat(obj.gdp = gdpData.filter((d) => d[0] === country && d[2] === year)[0][3]) * .001
+        } catch {
+            obj.cfp = parseFloat(obj.gdp = gdpData.filter((d) => d[0] === country && d[2] === 2000)[0][3]) * .001
+        }
         try{
             obj.pop= parseFloat(popData.filter((d) => d[0] === country && d[2] === year)[0][3]) * .0001
         } catch (e){
