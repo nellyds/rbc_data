@@ -42,6 +42,9 @@ export default function CFP() {
         if (copyIndex > 5) {
             setIndex(0)
         }
+        if (copyIndex > 11) {
+            setCopyIndex(0)
+        }
 
     }
     //copy index updates with prop

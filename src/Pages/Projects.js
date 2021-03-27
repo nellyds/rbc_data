@@ -11,11 +11,11 @@ const goTo = (event) =>{
       id: 'covid', name: 'US Covid Data',
   },
 { id: 'police', name: 'Police Shootings',},
-{ id: 'gameSales', name: 'Game Sales'},
-{ id: 'visualizer', name: 'Visualizer'},
-{id: 'houseHold', name: 'House Hold Composition vs. GDP'},
+// { id: 'gameSales', name: 'Game Sales'},
 {id: 'homicides', name: 'Global Homicide Trends' },
-{id: 'cfp', name: 'CFP'}
+{id: 'cfp', name: 'Carbon Foot Print vs. GDP'},
+// {id: 'transit', name: 'Transit'},
+{id: 'kwh', name: 'Kilowatt Hour Usage'}
 ]
     return(
         <div>

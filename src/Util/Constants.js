@@ -374,6 +374,13 @@ export const CFPFields = [
     {name: 'BRICS + Africa', value: 6},
     {name: 'reset', value: null}
 ]
+export const regionList = [{ "name": "North America", "color": "#fc1c03" },
+{ "name": "South America", "color": "#fc9d03" },
+{ "name": "Europe", "color": "#03befc" },
+{ "name": "Africa", "color": "#15ad6e" },
+{ "name": "Asia", "color": "#7714a8" }
+]
+
 
 export const CFPcopy = [
     "",

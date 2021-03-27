@@ -13,7 +13,7 @@ import { HomicideContext } from "../Contexts/HomicideContext"
 export default function Homicides() {
 
     const { countries, compileChartData, gdpData, homicideData } = useContext(HomicideContext)
-    const [countryList, setCountryList] = useState([])
+    const [countryList, setCountryList] = useState(['Chile', 'Ireland'])
     const [dataReady, setReady] = useState(false)
     const addToCountryList = (event) => {
         setCountryList([...countryList, event.target.id])
@@ -51,17 +51,17 @@ export default function Homicides() {
                         <FilterSelect fields={countries} addToList={addToCountryList} />
                         <div>
                             <ChipBox>
-                        {countryList.map((d, i) =>
+                                {countryList.map((d, i) =>
 
-<Chip
-    variant="outlined"
-    size="small"
-    icon={<CancelIcon />}
-    label={d}
-    onClick={removeCountry}
-    id={d} />
-)}
-</ChipBox>
+                                    <Chip
+                                        variant="outlined"
+                                        size="small"
+                                        icon={<CancelIcon />}
+                                        label={d}
+                                        onClick={removeCountry}
+                                        id={d} />
+                                )}
+                            </ChipBox>
                         </div>
                     </MultiSelectBox>
                     <Tooltip title="Fetch Data">
